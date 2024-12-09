@@ -381,18 +381,25 @@ menuBtn.onclick = OpenSideBar;
 function OpenSideBar() {
 if (isSidebarOpen) {
 // Close sidebar
-sidebar.style.left = "-41%";
-isSidebarOpen = false;
-glasspane.style.display = "none";
-document.body.style.overflow = "auto"; 
+CloseSideBar();
 } else {
 // Open sidebar
 sidebar.style.left = "0";
 isSidebarOpen = true;
 glasspane.style.display = "block";
 document.body.style.overflow = "hidden";
+if(isConsoleOpen){
+CloseConsole(); 
+} 
 }
 };
+
+function CloseSideBar(){
+sidebar.style.left = "-41%";
+isSidebarOpen = false;
+glasspane.style.display = "none";
+document.body.style.overflow = "auto"; 
+}
     
 let CurrentScreenHeight = window.innerHeight;
 let CurrentScreenWidth = window.innerWidth;
