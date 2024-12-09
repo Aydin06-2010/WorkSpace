@@ -333,7 +333,7 @@ const OpenConsoleBtn = document.getElementById("Run");
 const CloseConsoleBtn = document.querySelector(".console-button"); 
 const Console = document.querySelector(".console-overlay"); 
 const CurrentHeight = window.innerHeight;
-let ConsoleCounter = 1;
+let ConsoleOpen = false;
 
 window.onload= function(){
 WindowOutputiframe.focus();
@@ -343,18 +343,18 @@ OpenConsoleBtn.onclick = OpenConsole;
 CloseConsoleBtn.onclick = CloseConsole;
 
 function OpenConsole(){
-ConsoleCounter += 1;
-if(ConsoleCounter===2){
-Console.style.display = "block";
-}
-else if(ConsoleCounter>2){
+if(ConsoleOpen){
 CloseConsole();
-ConsoleCounter = 1; 
+}
+else {
+Console.style.display = "block"; 
+CinsoleOpen = true;
 }
 }
 
 function CloseConsole(){
 Console.style.display = "none";
+ConsoleOpen = false;
 }
 
 // Disable right-click for all images on the page
