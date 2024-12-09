@@ -346,6 +346,7 @@ function OpenConsole(){
 ConsoleCounter += 1;
 if(ConsoleCounter===2){
 Console.style.display = "block";
+OpenSideBar();
 }
 else if(ConsoleCounter>2){
 CloseConsole();
@@ -376,13 +377,16 @@ const glasspane = document.getElementById("glasspane");
 
 let isSidebarOpen = false; // Track sidebar state
 
-menuBtn.onclick = function () {
+menuBtn.onclick = OpenSideBar; 
+    
+function OpenSideBar() {
 if (isSidebarOpen) {
 // Close sidebar
 sidebar.style.left = "-41%";
 isSidebarOpen = false;
 glasspane.style.display = "none";
-document.body.style.overflow = "auto" ; 
+document.body.style.overflow = "auto"; 
+CloseConsole(); 
 } else {
 // Open sidebar
 sidebar.style.left = "0";
