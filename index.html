@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Console Window with Transparency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
+<style>
+*{
+font-family: "Space Grotesk"; 
+}
+    
+body {
+margin: 0;
+font-family: monospace;
+background: linear-gradient(135deg, #222, #444); /* Mock background content */
+height: 200vh; /* Make the page scrollable */
+color: white;
+}
+
+.Content-CodeEditor{
+margin-top: 85px;
+margin-left: 50px; 
+}
+
+#firstCode{
+width: 100% ;
+max-height: 500px;
+overflow-y: scroll;
+display: flex;
+align-items: center;
+justify-content: center; 
+}
+
+.UsefulBtns{
+display: flex;
+align-items: center;
+justify-content: center; 
+background-color: rgba(0,0,0,0);
+border: none;
+outline: none;
+cursor: pointer;
+}  
+
+.Imgs{
+width: 17px;
+}
+
+.Logos{
+width: 20px;
+}
+
+#RunImage {
+width: 15px; /* Adjust the size of the image */
+/*height: 30px; /* Same as width for uniformity */ 
+}
+
+#Run {
+display: flex; /* Align items horizontally */
+align-items: center; /* Vertically centers the button and image */
+gap: 10px; /* Adds space between the button and the image */
+justify-content: space-between; 
+padding: 10px 20px;
+font-size: 20px;
+font-weight: bold;
+color: #72d582;
+background-color: #044910;
+border: none;
+outline: none;
+border-radius: 15px;
+cursor: pointer;
+} 
+
+/* Menu Button */
+#Menu {
+position: relative; /* Back to relative positioning within TopDiv */
+z-index: 1100; /* Ensures it is still above other elements */
+background: none;
+border: none;
+cursor: pointer;
+}
+
+/* Sidebar container */
+.sidebar {
+position: fixed;
+top: 0;
+left: -41%; /* Initially hidden (off-screen) */
+width: 330px; /* Takes up 40% of the screen width */
+height: 100vh; /* Full screen height */
+background-color: rgb(44, 52, 68);
+color: white;
+box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+z-index: 1000;
+overflow-y: auto; /* Make the sidebar scrollable if content overflows */
+transition: left 0.3s ease-in-out; /* Smooth slide animation */
+}
+
+/* Sidebar menu items */
+.sidebar-menu {
+list-style-type: none;
+margin: 0;
+padding: 20px;
+/*font-family: "Space Grotesk", sans-serif;*/
+font-size: 20px;
+font-weight: normal;
+}
+
+.sidebar-menu li {
+margin: 15px 25px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-items: space-between;
+flex-direction: row;
+gap: 10px;
+}
+
+.sidebar-menu li:hover {
+color: #72d582; /* Highlight menu items on hover */
+}
+
+#Html{
+margin-top: 40px;
+}
+    
+/*#Run{
+margin-top: 85px;
+margin-left: 70px; 
+}*/
+
+.CodeEditorDesigns{
+background-color: rgb(44, 52, 68);
+}
+
+/* TopDiv */
+.TopDiv {
+width: 100%;
+height: 70px;
+background-color: rgb(44, 52, 68);
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 15px;
+margin-bottom: 15px;
+box-sizing: border-box;
+position: fixed;
+top: 0;
+z-index: 100;
+}
+
+/*.TopDiv {
+width: 100%;
+height: 70px;
+background-color: rgb(44, 52, 68);
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 15px;
+margin-bottom: 15px;
+box-sizing: border-box;
+position: fixed;
+top: 0;
+z-index: 1000;
+}*/
+    
+#pre{
+min-width: 1000px;
+}
+
+
+/* Change the background color for Prism.js code blocks 
+pre[class*="language-"], code[class*="language-"] {
+background: black !important; 
+padding: 10px;
+border-radius: 5px; 
+min-width: 800px;
+}*/
+    
+.console-overlay {
+position: fixed;
+display: none; 
+width: 100%;
+height: 50vh; /* Takes 50% of the screen height */
+bottom: 0; /* Sticks to the bottom of the viewport */
+background-color: rgba(43,43,43);
+overflow-y: auto; /* Scrollable content inside */
+overflow-x: hidden;
+z-index: 1000; 
+}
+
+/* Fixed title bar */
+.console-title {
+position: sticky; /* Keeps it at the top of the console */
+top: 0;
+height: 70px;
+background-color: rgb(44, 52, 68);
+display: flex; /* Enables Flexbox */
+align-items: center; /* Vertically centers the text */
+justify-content: space-between; /* Horizontally centers the text */
+padding: 10px;
+text-align: left;
+font-weight: bold;
+z-index: 10;
+color: rgb(255, 255, 255);
+font-size: 25px; 
+}
+.console-button{
+margin: 5px 20px;
+padding:10px 25px;
+color: white;
+background-color: rgb(235,60,60);
+/*font: "Space Grotesk",sans-serif;*/
+font-size: 20px;
+font-weight: bold;
+border: none;
+border-radius: 15px;
+outline:none;
+}
+/* Console content area */
+.console-content {
+color: #0f0;
+}
+
+/* Console text lines */
+.console-line {
+white-space: pre-wrap;
+word-wrap: break-word;
+}
+
+#iframeContainer{
+display: flex;
+align-items:center;
+justify-content: center;
+}
+    
+#WindowOutput{
+border:none;
+width:80%;
+height:350px;
+background-color: white;
+}
+
+#glasspane{
+position: fixed;
+width:  100vw;
+height: 100vh;
+background-color: rgba(0,0,0,0.2);
+backdrop-filter: blur(7px);
+display: none;
+z-index: 50; 
+}
+    
+</style>
+</head>
+
+<body>
+
+<div class = TopDiv CodeEditorDesigns>  
+
+<button id=Menu class=UsefulBtns><img src=BtnImgs/MenuBtn.png id=MenuImg class=Imgs></button>
+
+<!-- Sidebar -->
+<div id="Sidebar" class="sidebar">
+<ul class="sidebar-menu">
+<li id=Html><img src=Logos/HTML5.png class=Logos>index.html</li>
+<li id=Css><img src=Logos/CSS3.png class=Logos>Style.css</li>
+<li id=Js><img src=Logos/JS.png class=Logos>Script.js</li>
+<li>About</li>
+</ul>
+</div>
+    
+<button id=Run>
+<img src=BtnImgs/RunBtn.png id=RunImage>Run
+</button>
+
+<button id= Home class=UsefulBtns><img src=BtnImgs/HomeBtn.png id=HomeImg class=Imgs></button>
+
+
+</div>
+
+<div id=glasspane></div>
+
+<div id="firstCode" class=Contents-CodeEditor>
+<pre id="pre"><code class="language-css">/* Example CSS code */
+body {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #00f; /* light blue for selectors */
+    font-size: 24px;
+}
+
+p {
+    color: lime; /* lime for values */
+    margin: 20px;
+    padding: 10px;
+}
+
+a:hover {
+    color: red; /* red for properties */
+    text-decoration: underline;
+}
+</code></pre>
+</div>
+    
+<div class="console-overlay">
+
+<div class="console-title">Transparent Console - Fixed Title
+<button class="console-button">Close</button>
+</div>
+
+<div class="console-content">
+<div class="console-line">Line 1: Scroll the page behind this console.</div>
+<div class="console-line">Line 2: This content is inside the semi-transparent console.</div>
+<div id=iframeContainer>
+<iframe id="WindowOutput" src="https://aydin06-2010.github.io/Dino/"></iframe>
+</div>
+
+</div>
+</div>
+<script>
+const WindowOutputiframe = document.getElementById("WindowOutput");
+const OpenConsoleBtn = document.getElementById("Run"); 
+const CloseConsoleBtn = document.querySelector(".console-button"); 
+const Console = document.querySelector(".console-overlay"); 
+const CurrentHeight = window.innerHeight;
+let ConsoleCounter = 1;
+
+window.onload= function(){
+WindowOutputiframe.focus();
+}
+
+OpenConsoleBtn.onclick = OpenConsole;
+CloseConsoleBtn.onclick = CloseConsole;
+
+function OpenConsole(){
+ConsoleCounter += 1;
+if(ConsoleCounter===2){
+Console.style.display = "block";
+}
+else if(ConsoleCounter>2){
+CloseConsole();
+ConsoleCounter = 1; 
+}
+}
+
+function CloseConsole(){
+Console.style.display = "none";
+}
+
+// Disable right-click for all images on the page
+function disableRightClickForAllImages() {
+const images = document.querySelectorAll("img");
+images.forEach(image => {
+image.addEventListener("contextmenu", function(event) {
+event.preventDefault();
+});
+});
+}
+
+// Call the function
+disableRightClickForAllImages();
+
+const menuBtn = document.getElementById("Menu");
+const sidebar = document.getElementById("Sidebar");
+const glasspane = document.getElementById("glasspane"); 
+
+let isSidebarOpen = false; // Track sidebar state
+
+menuBtn.onclick = function () {
+if (isSidebarOpen) {
+// Close sidebar
+sidebar.style.left = "-41%";
+isSidebarOpen = false;
+glasspane.style.display = "none";
+} else {
+// Open sidebar
+sidebar.style.left = "0";
+isSidebarOpen = true;
+glasspane.style.display = "block";
+}
+};
+    
+let CurrentScreenHeight = window.innerHeight;
+let CurrentScreenWidth = window.innerWidth;
+    
+// Define base screen dimensions for both landscape and portrait
+const LandScapeScreenWidth = 1317;
+const LandScapeScreenHeight = 655; //568
+
+const PortraitScreenWidth = 823;
+const PortraitScreenHeight = 1149; //1062
+
+function CalculateScaleFactors(){
+// Get current screen dimensions
+
+// Calculate the aspect ratio for current and base screens
+let BaseScreenWidth, BaseScreenHeight;
+
+if(CurrentScreenWidth > CurrentScreenHeight){ // Landscape orientation
+BaseScreenWidth = LandScapeScreenWidth;
+BaseScreenHeight = LandScapeScreenHeight;
+} else { // Portrait orientation
+BaseScreenWidth = PortraitScreenWidth;
+BaseScreenHeight = PortraitScreenHeight;
+}
+
+// Calculate the aspect ratios
+const currentAspectRatio = CurrentScreenWidth / CurrentScreenHeight;
+const baseAspectRatio = BaseScreenWidth / BaseScreenHeight;
+
+// Calculate scale factor based on the aspect ratio
+const scaleFactor = currentAspectRatio / baseAspectRatio;
+
+// Apply scaling to elements
+const styles = {
+ContentCodeEditor: {
+marginTop: 85 * scaleFactor,
+marginLeft: 50 * scaleFactor,
+},
+firstCode: {
+maxHeight: 500 * scaleFactor,
+},
+RunImage: {
+width: 15 * scaleFactor,
+},
+Run: {
+paddingTop: 10 * scaleFactor,
+paddingBottom: 10 * scaleFactor,
+paddingLeft: 20 * scaleFactor,
+paddingRight: 20 * scaleFactor,
+fontSize: 20 * scaleFactor,
+borderRadius: 15 * scaleFactor,
+},
+TopDiv: {
+height: 70 * scaleFactor,
+paddingLeft: 15 * scaleFactor,
+paddingRight: 15 * scaleFactor,
+},
+pre: {
+minWidth: 1000 * scaleFactor,
+},
+consoleTitle: {
+height: 70 * scaleFactor,
+padding: 10 * scaleFactor,
+fontSize: 25 * scaleFactor,
+},
+consoleButton: {
+marginTop: 5 * scaleFactor,
+marginBottom: 5 * scaleFactor,
+marginLeft: 20 * scaleFactor,
+marginRight: 20 * scaleFactor,
+paddingTop: 10 * scaleFactor,
+paddingBottom: 10 * scaleFactor,
+paddingLeft: 25 * scaleFactor,
+paddingRight: 25 * scaleFactor,
+fontSize: 20 * scaleFactor,
+borderRadius: 15 * scaleFactor,
+},
+WindowOutput: {
+height: 350 * scaleFactor,
+},
+};
+    // Apply the styles dynamically
+for (let elementId in styles) {
+const element = document.getElementById(elementId);
+if (element) {
+const style = styles[elementId];
+for (let property in style) {
+element.style[property] = `${style[property]}px`;
+}
+}
+}
+}
+
+function UpdateScreenDimensions() {
+currentScreenWidth = window.innerWidth;
+currentScreenHeight = window.innerHeight;
+CalculateScaleFactors();
+}   
+
+CalculateScaleFactors();
+let resizeTimeout; // Variable to track the debounce timer
+
+// Debounced resize/orientationchange handler
+function handleResize() {
+clearTimeout(resizeTimeout); // Clear any previously set timeout
+resizeTimeout = setTimeout(() => {
+UpdateScreenDimensions(); // Call the function after a delay
+}, 200); // Delay of 200ms
+}
+// Add event listeners
+window.addEventListener("resize", handleResize);
+window.addEventListener("orientationchange", handleResize);
+
+</script>
+    
+</body>
+</html>
