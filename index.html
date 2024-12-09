@@ -416,6 +416,42 @@ isSidebarOpen = false;
 glasspane.style.display = "none";
 document.body.style.overflow = "auto"; 
 }
+
+const HtmlCode = document.getElementById("Html");
+const CssCode = document.getElementById("Css");
+const JSCode = document.getElementById("Js");
+
+const HtmlDiv = document.getElementById("HTMLCode");
+const CssDiv = document.getElementById("CSSCode");
+const JsDiv = document.getElementById("JSCode"); 
+
+HideAllDiv();
+
+HtmlCode.onclick = function(){
+HideAllDiv();
+HtmlDiv.style.display = "flex";
+} 
+
+
+CssCode.onclick = function(){
+HideAllDiv();
+CssDiv.style.display = "flex";
+} 
+
+
+JSCode.onclick = function(){
+HideAllDiv();
+JsDiv.style.display = "flex";
+} 
+
+
+function HideAllDiHtmlCode(){
+HtmlDiv.style.display = "none";
+CssDiv.style.display = "none";
+JsDiv.style.display = "none";
+}
+
+    
     
 let CurrentScreenHeight = window.innerHeight;
 let CurrentScreenWidth = window.innerWidth;
