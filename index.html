@@ -382,11 +382,13 @@ if (isSidebarOpen) {
 sidebar.style.left = "-41%";
 isSidebarOpen = false;
 glasspane.style.display = "none";
+document.body.style.overflow = "auto" ; 
 } else {
 // Open sidebar
 sidebar.style.left = "0";
 isSidebarOpen = true;
 glasspane.style.display = "block";
+document.body.style.overflow = "hidden";
 }
 };
     
