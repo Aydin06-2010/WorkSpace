@@ -333,7 +333,7 @@ const OpenConsoleBtn = document.getElementById("Run");
 const CloseConsoleBtn = document.querySelector(".console-button"); 
 const Console = document.querySelector(".console-overlay"); 
 const CurrentHeight = window.innerHeight;
-let ConsoleOpen = false;
+let isConsoleOpen = false;
 
 window.onload= function(){
 WindowOutputiframe.focus();
@@ -343,12 +343,12 @@ OpenConsoleBtn.onclick = OpenConsole;
 CloseConsoleBtn.onclick = CloseConsole;
 
 function OpenConsole(){
-if(ConsoleOpen){
+if(isConsoleOpen){
 CloseConsole();
 }
 else {
 Console.style.display = "block"; 
-CinsoleOpen = true;
+isConsoleOpen = true;
 }
 }
 
