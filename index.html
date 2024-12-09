@@ -462,9 +462,12 @@ const CssDiv = document.getElementById("CSSCode");
 const JsDiv = document.getElementById("JSCode01"); 
 
 HideAllDiv();
+ResetColors();
+
 
 HtmlCode.onclick = function(){
 HideAllDiv();
+ResetColors()
 SelectedFile("HtmlCode"); 
 HtmlDiv.style.display = "flex";
 } 
@@ -472,6 +475,7 @@ HtmlDiv.style.display = "flex";
 
 CssCode.onclick = function(){
 HideAllDiv();
+ResetColors(); 
 SelectedFile("CssCode"); 
 CssDiv.style.display = "flex";
 } 
@@ -479,6 +483,7 @@ CssDiv.style.display = "flex";
 
 JSCode.onclick = function(){
 HideAllDiv();
+ResetColors(); 
 SelectedFile("JsCode"); 
 JsDiv.style.display = "flex";
 } 
@@ -494,7 +499,11 @@ function SelectedFile(Element){
 Element.style.color = "#72a9d5"; 
 }  
 
-function 
+function ResetColors(){
+HtmlCode.style.color = "";
+CssCode.style.color = "";
+JsCode.style.color = "";
+}
     
 let CurrentScreenHeight = window.innerHeight;
 let CurrentScreenWidth = window.innerWidth;
