@@ -468,7 +468,7 @@ ResetColors();
 HtmlCode.onclick = function(){
 HideAllDiv();
 ResetColors()
-SelectedFile("HtmlCode"); 
+SelectedFile("Html"); 
 HtmlDiv.style.display = "flex";
 } 
 
@@ -476,7 +476,7 @@ HtmlDiv.style.display = "flex";
 CssCode.onclick = function(){
 HideAllDiv();
 ResetColors(); 
-SelectedFile("CssCode"); 
+SelectedFile("Css"); 
 CssDiv.style.display = "flex";
 } 
 
@@ -484,7 +484,7 @@ CssDiv.style.display = "flex";
 JSCode.onclick = function(){
 HideAllDiv();
 ResetColors(); 
-SelectedFile("JsCode"); 
+SelectedFile("Js"); 
 JsDiv.style.display = "flex";
 } 
 
@@ -495,7 +495,8 @@ CssDiv.style.display = "none";
 JsDiv.style.display = "none";
 }
 
-function SelectedFile(Element){
+function SelectedFile(ElementID){
+const Element = document.getElementById(ElementID); 
 Element.style.color = "#72a9d5"; 
 }  
 
