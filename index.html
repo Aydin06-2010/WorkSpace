@@ -465,18 +465,21 @@ HideAllDiv();
 
 HtmlCode.onclick = function(){
 HideAllDiv();
+SelectedFile("HtmlCode"); 
 HtmlDiv.style.display = "flex";
 } 
 
 
 CssCode.onclick = function(){
 HideAllDiv();
+SelectedFile("CssCode"); 
 CssDiv.style.display = "flex";
 } 
 
 
 JSCode.onclick = function(){
 HideAllDiv();
+SelectedFile("JsCode"); 
 JsDiv.style.display = "flex";
 } 
 
@@ -487,7 +490,11 @@ CssDiv.style.display = "none";
 JsDiv.style.display = "none";
 }
 
-    
+function SelectedFile(Element){
+Element.style.color = "#72a9d5"; 
+}  
+
+function 
     
 let CurrentScreenHeight = window.innerHeight;
 let CurrentScreenWidth = window.innerWidth;
