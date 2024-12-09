@@ -346,7 +346,6 @@ function OpenConsole(){
 ConsoleCounter += 1;
 if(ConsoleCounter===2){
 Console.style.display = "block";
-OpenSideBar();
 }
 else if(ConsoleCounter>2){
 CloseConsole();
@@ -386,7 +385,6 @@ sidebar.style.left = "-41%";
 isSidebarOpen = false;
 glasspane.style.display = "none";
 document.body.style.overflow = "auto"; 
-CloseConsole(); 
 } else {
 // Open sidebar
 sidebar.style.left = "0";
