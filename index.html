@@ -347,7 +347,7 @@ a:hover {
 const WindowOutputiframe = document.getElementById("WindowOutput");
 const OpenConsoleBtn = document.getElementById("Run"); 
 const CloseConsoleBtn = document.querySelector(".console-button"); 
-const Console = document.querySelector(".console-overlay"); 
+const Console = document.querySelector(".console-overlay");
 const CurrentHeight = window.innerHeight;
 let isConsoleOpen = false;
 
@@ -393,6 +393,12 @@ const glasspane = document.getElementById("glasspane");
 let isSidebarOpen = false; // Track sidebar state
 
 menuBtn.onclick = OpenSideBar; 
+
+glasspane.addEventListener('click', function(event){
+if(!sidebar.contains(event.target)){
+CloseSideBar(); 
+}
+}); 
     
 function OpenSideBar() {
 if (isSidebarOpen) {
@@ -417,7 +423,7 @@ glasspane.style.display = "none";
 document.body.style.overflow = "auto"; 
 }
 
-const HtmlCode = document.getElementById("Html");
+/*const HtmlCode = document.getElementById("Html");
 const CssCode = document.getElementById("Css");
 const JSCode = document.getElementById("Js");
 
@@ -449,7 +455,7 @@ function HideAllDiHtmlCode(){
 HtmlDiv.style.display = "none";
 CssDiv.style.display = "none";
 JsDiv.style.display = "none";
-}
+}*/
 
     
     
