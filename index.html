@@ -297,7 +297,35 @@ z-index: 50;
 
 </div>
 
-<div id=HTMLCode class=DinoGameCode></div>
+<div id=HTMLCode class=DinoGameCode>
+<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"&gt;
+  &lt;script src="script.js" type="module"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="world" data-world&gt;
+    &lt;div class="score" data-score&gt;0&lt;/div&gt;
+    &lt;div class="start-screen" data-start-screen&gt;Press Any Key To Start&lt;/div&gt;
+    &lt;img src="imgs/ground.png" class="ground" data-ground&gt;
+    &lt;img src="imgs/ground.png" class="ground" data-ground&gt;
+    &lt;img src="imgs/dino-stationary.png" class="dino" data-dino&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</div>
+
+
+    
 <div id=CSSCode class=DinoGameCode></div>
 <div id=JSCode01 class=DinoGameCode></div>
 <div id=glasspane></div>
@@ -424,7 +452,7 @@ glasspane.style.display = "none";
 document.body.style.overflow = "auto"; 
 }
 
-/*const HtmlCode = document.getElementById("Html");
+const HtmlCode = document.getElementById("Html");
 const CssCode = document.getElementById("Css");
 const JSCode = document.getElementById("Js");
 
@@ -456,7 +484,7 @@ function HideAllDiHtmlCode(){
 HtmlDiv.style.display = "none";
 CssDiv.style.display = "none";
 JsDiv.style.display = "none";
-}*/
+}
 
     
     
