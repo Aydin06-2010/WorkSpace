@@ -309,7 +309,7 @@ z-index: 50;
 <div id="Sidebar" class="sidebar">
 <ul class="sidebar-menu">
 <li id=Html><img src=Logos/HTML5.png class=Logos>index.html</li>
-<li id=Css><img src=Logos/CSS3.png class=Logos>Style.css</li>
+<li id=Css><img src=Logos/CSS3.png class=Logos>styles.css</li>
 <li id=Js><img src=Logos/JS.png class=Logos>Script.js</li>
 <li>About</li>
 </ul>
@@ -359,8 +359,74 @@ z-index: 50;
     
 <div id=CSSCode class=DinoGameCode>
 <div class=FileTabContainer>
+
 <div class=FileTab><img src=Logos/CSS3.png class=TabImg>styles.css</div>
+
 </div>
+
+<pre><code class="language-css">
+*, *::before, *::after {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.world {
+  overflow: hidden;
+  position: relative;
+}
+
+.score {
+  position: absolute;
+  font-family: "Space Grotesk"; 
+  font-size: 3vmin;
+  right: 1vmin;
+  top: 1vmin;
+}
+
+.start-screen {
+  position: absolute;
+  font-family: "Space Grotesk"; 
+  font-size: 5vmin;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hide {
+  display: none;
+}
+
+.ground {
+  --left: 0;
+  position: absolute;
+  width: 300%;
+  bottom: 0;
+  left: calc(var(--left) * 1%)
+}
+
+.dino {
+  --bottom: 0;
+  position: absolute;
+  left: 1%;
+  height: 30%;
+  bottom: calc(var(--bottom) * 1%);
+}
+
+.cactus {
+  position: absolute;
+  left: calc(var(--left) * 1%);
+  height: 30%;
+  bottom: 0;
+}
+</code></pre>
 </div>
 <div id=JSCode01 class=DinoGameCode></div>
 <div id=glasspane></div>
