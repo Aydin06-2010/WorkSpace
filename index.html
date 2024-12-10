@@ -410,6 +410,10 @@ const Console = document.querySelector(".console-overlay");
 const CurrentHeight = window.innerHeight;
 let isConsoleOpen = false;
 
+const WIdth = document.querySelector(".PreTags").style.width;
+
+Console.textContent = `${WIdth}`;
+
 window.onload= function(){
 WindowOutputiframe.focus();
 }
